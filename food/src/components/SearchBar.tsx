@@ -1,23 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
+import { AntDesign } from "@expo/vector-icons";
 import { View, TextInput, StyleSheet } from "react-native";
 
 const SearchBar = () => {
+  const [isFocused, setFocus] = useState(false);
+
   return (
-    <View>
+    <View style={[styles.bar, isFocused && styles.focused]}>
+      <AntDesign name="search1" size={24} color="black" style={styles.icon} />
       <TextInput
         placeholder="Search Bar"
-        style={styles.searchInput}
+        style={[styles.searchInput]}
+        onFocus={() => {
+          setFocus(true);
+        }}
+        onBlur={() => {
+          setFocus(false);
+        }}
       ></TextInput>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  searchInput: {
+  bar: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    height: 50,
+    backgroundColor: "#f0eeee",
+    borderRadius: 16,
     borderWidth: 2,
-    borderRadius: 50,
+    borderColor: "#f0eeee",
     paddingVertical: 4,
     paddingHorizontal: 8,
+    marginHorizontal: 16,
+  },
+  focused: {
+    borderColor: "red",
+  },
+  icon: {
+    position: "absolute",
+    left: 8,
+  },
+  searchInput: {
+    flexGrow: 1,
+    paddingLeft: 40,
+    height: "100%",
+    zIndex: 2,
   },
 });
 
