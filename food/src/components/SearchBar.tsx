@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { View, TextInput, StyleSheet } from "react-native";
 
-const SearchBar = () => {
+const SearchBar = ({ term, onTermChange }) => {
   const [isFocused, setFocus] = useState(false);
 
   return (
@@ -11,12 +11,16 @@ const SearchBar = () => {
       <TextInput
         placeholder="Search Bar"
         style={[styles.searchInput]}
+        autoCapitalize="none"
+        autoCorrect={false}
         onFocus={() => {
           setFocus(true);
         }}
         onBlur={() => {
           setFocus(false);
         }}
+        value={term}
+        onChangeText={(newTerm) => onTermChange(newTerm)}
       ></TextInput>
     </View>
   );
