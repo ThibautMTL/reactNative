@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 8,
     marginHorizontal: 16,
+    marginVertical: 16,
   },
   focused: {
     borderColor: "red",

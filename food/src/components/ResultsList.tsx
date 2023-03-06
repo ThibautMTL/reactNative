@@ -1,8 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
+import { withNavigation } from "react-navigation";
 import ListItem from "./ListItem";
 
-const ResultsList = ({ results, title }) => {
+const ResultsList = ({ results, title, navigation }) => {
   return (
     <View style={[styles.wrapper]}>
       <Text style={[styles.title]}>{title}</Text>
@@ -10,8 +17,15 @@ const ResultsList = ({ results, title }) => {
         horizontal
         data={results}
         keyExtractor={(result) => result.id}
+        showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => {
-          return <ListItem item={item} />;
+          return (
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Details", { id: item.id })}
+            >
+              <ListItem item={item} />
+            </TouchableOpacity>
+          );
         }}
       />
     </View>
@@ -20,17 +34,13 @@ const ResultsList = ({ results, title }) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginVertical: 24,
-    marginLeft: 24,
+    marginBottom: 12,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
-  },
-  image: {
-    width: 50,
-    height: 50,
+    marginLeft: 16,
   },
 });
 
-export default ResultsList;
+export default withNavigation(ResultsList);

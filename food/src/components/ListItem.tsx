@@ -23,9 +23,9 @@ const ListItem = ({ item }) => {
 
 const styles = StyleSheet.create({
   card: {
-    width: 200,
-    height: 120,
-    marginRight: 24,
+    width: 300,
+    height: 200,
+    marginLeft: 16,
   },
   cover: {
     flex: 1,
